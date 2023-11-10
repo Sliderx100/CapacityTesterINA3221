@@ -30,9 +30,9 @@
 #define DONE_MODE             5     //DONE with HOLD DISPALY
 
 #define VAVG                  1.114 //1.0 -- 1.2
-#define Imin                  20   //CUT-OFF current in charging mode (mA)
+#define Imin                  50   //CUT-OFF current in charging mode (mA)
 float Vmin [] = {3.00, 2.90, 2.85, 2.80, 11.50, 10.80, 10.50};  // List turn off discharger
-float Vmax [] = {4.10, 14.20};                                  // List turn off charger
+float Vmax [] = {4.15, 14.20};                                  // List turn off charger
 
 byte activeChDisp = 0;
 struct testerChannel{
@@ -333,11 +333,9 @@ void sendOledData() {
   oledBottomBar();
   switch (activeChDisp){
     case 0:
-      oled.invertText(1);
       oled.setScale(1);
       oled.setCursor(78,0);
-      oled.print(">>CH1<<");
-      oled.invertText(0);
+      oled.print("   I   ");
       oled.setScale(2);
       oled.setCursor(65,1);
       (tester[activeChDisp].V < 10) ? dtostrf(tester[activeChDisp].V, 5, 3, V_out) : dtostrf(tester[activeChDisp].V, 5, 2, V_out);
@@ -362,11 +360,9 @@ void sendOledData() {
       oled.print(Cap_out);
       break;
     case 1:
-      oled.invertText(1);
       oled.setScale(1);
       oled.setCursor(78,0);
-      oled.print(">>CH2<<");
-      oled.invertText(0);
+      oled.print("  I I  ");
       oled.setScale(2);
       oled.setCursor(65,1);
       (tester[activeChDisp].V < 10) ? dtostrf(tester[activeChDisp].V, 5, 3, V_out) : dtostrf(tester[activeChDisp].V, 5, 2, V_out);
@@ -391,11 +387,9 @@ void sendOledData() {
       oled.print(Cap_out);
       break;
     case 2:
-      oled.invertText(1);
       oled.setScale(1);
       oled.setCursor(78,0);
-      oled.print(">>CH3<<");
-      oled.invertText(0);
+      oled.print(" I I I ");
       oled.setScale(2);
       oled.setCursor(65,1);
       (tester[activeChDisp].V < 10) ? dtostrf(tester[activeChDisp].V, 5, 3, V_out) : dtostrf(tester[activeChDisp].V, 5, 2, V_out);
