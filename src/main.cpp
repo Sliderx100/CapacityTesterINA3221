@@ -90,6 +90,7 @@ void setup() {
   initDevices();
   oled.clear();
   oled.setScale(2);
+  oled.invertText(0);
   oled.setCursor(7, 3);
   oled.println("LOADING...");
   delay(1000);
@@ -143,7 +144,6 @@ void batteryStatus(){
 
 void oledStatusBar(byte i){
   oled.setScale(1);
-  oled.invertText(0);
   switch (i)
   {
   case 0:
@@ -417,7 +417,6 @@ void sendOledData() {
 }
 
 void oledBottomBar(){
-  oled.invertText(0);
   oled.setScale(1);
   oled.setCursor(4,7);
   if (tester[activeChDisp].mode == AUTO_MODE){
@@ -429,6 +428,7 @@ void oledBottomBar(){
   } else if (tester[activeChDisp].mode == DONE_MODE){
     oled.invertText(1);
     oled.print("    !!! DONE !!!    ");
+    oled.invertText(0);
   } else if (tester[activeChDisp].mode == PRESENT_MODE){
     oled.print("  AUTO  ");
     oled.setCursor(52,7);
